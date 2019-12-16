@@ -4,4 +4,5 @@ Prophet is a forecasting for time series data method developed and released by F
 
 
 ### The Data
-In this tutorial, we use hourly electricity usage/consumption from Kentucky state in USA from June 2013 to August 2018. This data obtained from kaggle [here](https://www.kaggle.com/robikscube/hourly-energy-consumption#EKPC_hourly.csv). There are 45334 rows data that consist of timestamp and energy usage in MegaWatt. ![Alt text](https://raw.githubusercontent.com/anandwigma/Forecasting-Energy-Consumption-Using-Prophet/master/images/EKPC%20data.png)
+In this tutorial, we use hourly electricity usage/consumption from Kentucky state in USA from June 2013 to August 2018. This data obtained from kaggle [here](https://www.kaggle.com/robikscube/hourly-energy-consumption#EKPC_hourly.csv). There are 45334 rows data that consist of timestamp and energy usage in MegaWatt. Here are some preview of the data:
+![Alt text](https://raw.githubusercontent.com/anandwigma/Forecasting-Energy-Consumption-Using-Prophet/master/images/EKPC%20data.png)
