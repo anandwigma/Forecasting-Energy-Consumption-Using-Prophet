@@ -28,6 +28,10 @@ from fbprophet.plot import add_changepoints_to_plot
 m = Prophet(changepoint_prior_scale=0.01)
 m.fit(sample)
 ```
+Add the built-in holiday effect in US to the model
+```python
+m.add_country_holidays(country_name='US')
+```
 
 Then make the forecast, specify the lenght and the type of time ('H' = hourly, 'Y' = yearly)
 ```python
@@ -40,3 +44,35 @@ Last is plot the forecast graph
 fig = m.plot(fcst)
 ```
 
+Prophet doesn't have built-in season in US like holiday, therefore we must add the season as custom season.
+We must specify which data is included in a season
+```python
+def is_spring(ds):
+    date = pd.to_datetime(ds)
+    return (date.month >= 3 and date.month <= 5)
+
+def is_summer(ds):
+    date = pd.to_datetime(ds)
+    return (date.month >= 6 and date.month <= 8)
+
+def is_fall(ds):
+    date = pd.to_datetime(ds)
+    return (date.month >= 9 and date.month <= 11)
+
+def is_winter(ds):
+    date = pd.to_datetime(ds)
+    return (date.month == 12 or date.month < 3)
+
+sample['spring day'] = sample['ds'].apply(is_spring)
+sample['summer day'] = sample['ds'].apply(is_summer)
+sample['fall day'] = sample['ds'].apply(is_fall)
+sample['winter day'] = sample['ds'].apply(is_winter)
+```
+
+Then add the seasonality before fitting the model
+```python
+m.add_seasonality(name='Spring', period=7, fourier_order=3, condition_name='spring day')
+m.add_seasonality(name='Summer', period=7, fourier_order=3, condition_name='summer day')
+m.add_seasonality(name='Fall', period=7, fourier_order=3, condition_name='fall day')
+m.add_seasonality(name='Winter', period=7, fourier_order=3, condition_name='winter day')
+```
