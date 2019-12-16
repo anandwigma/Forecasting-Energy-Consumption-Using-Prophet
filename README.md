@@ -43,6 +43,10 @@ Last is plot the forecast graph
 ```python
 fig = m.plot(fcst)
 ```
+To plot the daily, monthly, and yearly graph, use this code
+```python
+fig = m.plot_components(fcst)
+```
 
 Prophet doesn't have built-in season in US like holiday, therefore we must add the season as custom season.
 We must specify which data is included in a season
@@ -76,3 +80,4 @@ m.add_seasonality(name='Summer', period=7, fourier_order=3, condition_name='summ
 m.add_seasonality(name='Fall', period=7, fourier_order=3, condition_name='fall day')
 m.add_seasonality(name='Winter', period=7, fourier_order=3, condition_name='winter day')
 ```
+That is the simple tutorial for using prophet. Check the notebook for full code and also check [prophet documentation](https://facebook.github.io/prophet/) for more information about prophet forecasting.
