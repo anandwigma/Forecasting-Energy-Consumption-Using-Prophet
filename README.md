@@ -28,10 +28,6 @@ from fbprophet.plot import add_changepoints_to_plot
 m = Prophet(changepoint_prior_scale=0.01)
 m.fit(sample)
 ```
-Add the built-in holiday effect in US to the model
-```python
-m.add_country_holidays(country_name='US')
-```
 
 Then make the forecast, specify the lenght and the type of time ('H' = hourly, 'Y' = yearly)
 ```python
@@ -43,9 +39,17 @@ Last is plot the forecast graph
 ```python
 fig = m.plot(fcst)
 ```
+![Forecast plot](https://raw.githubusercontent.com/anandwigma/Forecasting-Energy-Consumption-Using-Prophet/master/images/forecast%20plot.png)
+
 To plot the daily, monthly, and yearly graph, use this code
 ```python
 fig = m.plot_components(fcst)
+```
+![Forecast plot](https://raw.githubusercontent.com/anandwigma/Forecasting-Energy-Consumption-Using-Prophet/master/images/plot%20components.png)
+
+Prophet has built-in holiday date to use. In my case, add the built-in holiday effect in US to the model before fitting the model to data.
+```python
+m.add_country_holidays(country_name='US')
 ```
 
 Prophet doesn't have built-in season in US like holiday, therefore we must add the season as custom season.
